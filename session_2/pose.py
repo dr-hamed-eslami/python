@@ -6,12 +6,14 @@ mpPose = mp.solutions.pose
 pose = mpPose.Pose()
 mpDraw = mp.solutions.drawing_utils
 
-cap = cv2.VideoCapture(0)
-# cap = cv2.VideoCapture('a.mp4')
+# cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('pose.webm')
 pTime = 0
 
 while True:
     success, img = cap.read()
+    if not success:
+        break
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = pose.process(imgRGB)
     print(results.pose_landmarks)
